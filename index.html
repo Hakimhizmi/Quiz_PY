@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./css/main.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <title>Document</title>
+
+
+</head>
+
+<body>
+    <div id="page1">
+        <div class="v2">
+            <div class="v1">
+                <button class="glow-on-hover" id="start" type="button">Start the Quiz »</button>
+            </div>
+
+
+
+        </div>
+
+        <div class="v3">
+
+        </div>
+        <div class="v4"><span class="v5"> Python &nbsp Quiz</span>
+
+        </div>
+
+
+        <div class="v15_50">
+            <div class="v15_67"><span class="v15_54">Hakim &nbsp; Quiz </span></div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <div id="page2" style="display:none;">
+
+        <div class="v1_6">
+            <progress value="0" max="10" id="progressBar"></progress>         
+
+            <div class="v15_62">
+                <button class="glow-on-hover" id="bu" type="button">continue</button>
+            </div>
+        </div>
+        <span class="v15_9" id="questiont">PREDICT THE TOP LOSER (for tomorrow) across these indices</span>
+        <div class="v15_66" id="myDIV">
+            <div class="v15_18 cli ">
+                <div class="v15_19 jj" id="v15_19"></div><span class="v15_20 hh " id="rep1">NIFTY50 </span>
+                <div class="v15_23">
+                    <div class="v15_24"></div><span class="v15_25">A</span>
+                </div>
+            </div>
+            <div class="v15_26 cli ">
+                <div class="v15_27" id="v15_27"></div><span class="v15_28 hh " id="rep2">NIFTYNEXT50 </span>
+                <div class="v15_31">
+                    <div class="v15_32"></div><span class="v15_33">B</span>
+                </div>
+            </div>
+            <div class="v15_34 cli ">
+                <div class="v15_35" id="v15_35"></div><span class="v15_36 hh " id="rep3">NIFTYBANK</span>
+                <div class="v15_39">
+                    <div class="v15_40"></div><span class="v15_41">C</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="v15_45"><span class="v15_46"> 1/5</span>
+
+            <div class="v15_47">
+                <div class="v15_48 "></div>
+                <div class="v15_49 diag"></div>
+            </div>
+        </div>
+        <div class="v15_51">
+            <a href="#" class="close"></a>
+
+            <div class="name"></div>
+        </div>
+        <div class="v15_55">
+            <div class="v15_56"></div>
+            <div class="v15_57"><span class="v15_58" id="coin">0</span>
+                <div class="v15_59 "></div>
+            </div>
+        </div>
+        <div class="v15_50">
+            <div class="v15_67"><span class="v15_54">Python Quiz #1</span></div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+        var vv = [{
+            q: "Python est un langage _______?",
+            r: ["interprété", "machine", "compilé"],
+            br: "interprété"
+        },
+        {
+            q: "Laquelle des fonctions suivantes convertit un « string » en « float » en python?",
+            r: ["str(x)", "float(x)", "long(x [,base] )"],
+            br: "float(x)"
+        },
+        {
+            q: "En python 3, que fait l’opérateur // ?",
+            r: ["Division entière", "Retourne le reste", "Division du float par zéro"],
+            br: "Division entière"
+        },
+        {
+            q: "Quelle fonction est utilisée pour ouvrir le fichier en lecture en Python?",
+            r: ["fopen(file_name, mode)", "open(file_name, mode)",
+                "open_file(file_name, mode)"
+            ],
+            br: "open(file_name, mode)"
+        },
+        {
+            q: "Quelle est la fonction qui compare les éléments des deux listes?",
+            r: ["cmp(list1, list2)", "eq(list1, list2)", "len(list1, list2)"],
+            br: "cmp(list1, list2)"
+        },
+        {
+            q: "Laquelle des fonctions suivantes renvoie le plus petit caractère de la chaîne str?",
+            r: ["lower()", "upper(str)", "min(str)"],
+            br: "min(str)"
+        },
+        {
+            q: "En python, quel mot clé est utilisé pour commencer une fonction?",
+            r: ["function", "fun", "def"],
+            br: "def"
+        },
+        {
+            q: "Quelle fonction insère un objet à un index donné dans une liste?",
+            r: ["ist.index(obj)", "list.insert(index, obj)", "list.pop(obj=list[-1])"],
+            br: "list.insert(index, obj)"
+        },
+        {
+            q: "En python, quelle est la bonne méthode pour charger un module?",
+            r: ["include math", "import math", "using math"],
+            br: "import math"
+        },
+        ];
+        var lb1 = document.getElementById("questiont");
+        var lb2 = document.getElementById("rep1");
+        var lb3 = document.getElementById("rep2");
+        var lb4 = document.getElementById("rep3");
+
+
+        var cl0 = "";
+        valuue = 0
+
+        document.querySelector('.close').addEventListener('click', () => {
+            window.location.reload();
+        });
+        document.getElementById('start').addEventListener("click", () => {
+            
+            try {
+                document.querySelector('#bu').setAttribute("disabled", true);
+            } catch {
+                //pass
+            }
+            document.getElementById('page2').removeAttribute('style');
+
+            var item = vv[Math.floor(Math.random() * vv.length)];
+            lb1.innerHTML = "Q.  " + item.q;
+
+            lb2.innerHTML = item.r[1];
+            lb2.setAttribute("title", item.r[1]);
+            lb3.innerHTML = item.r[0];
+            lb3.setAttribute("title", item.r[0]);
+            lb4.innerHTML = item.r[2];
+            lb4.setAttribute("title", item.r[2]);
+
+            var timeleft = 10;
+            var downloadTimer = setInterval(function () {
+                if (timeleft <= 0) {
+                    clearInterval(downloadTimer);
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == item.br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+                            document.querySelector('#bu').removeAttribute("disabled");
+                            
+                        }
+                    };
+                }
+                document.getElementById("progressBar").value = 10 - timeleft;
+                timeleft -= 1;
+            }, 1000);
+
+
+
+            document.querySelector('.jj').addEventListener('click', (e) => {
+                document.querySelector('#bu').removeAttribute("disabled");
+                var bbt = document.querySelectorAll('.cli');
+                for (var el of bbt) {
+                    el.classList.add('foo');
+                };
+                cl0 = 'cl0';
+                if (lb2.title == item.br) {
+                    document.getElementById('v15_19').style.backgroundColor = "#45c486";
+                    valuue = parseInt(document.getElementById('coin').textContent) + 100
+                    document.getElementById('coin').innerHTML = valuue;
+                } else {
+                    document.getElementById('v15_19').style.backgroundColor = "#a40021";
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == item.br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+
+                        }
+                    };
+
+                }
+            })
+            document.querySelector('.v15_27').addEventListener('click', (e) => {
+                document.querySelector('#bu').removeAttribute("disabled");
+                var bbt = document.querySelectorAll('.cli');
+                for (var el of bbt) {
+                    el.classList.add('foo');
+                };
+                cl0 = 'cl1'
+                if (lb3.title == item.br) {
+                    document.getElementById('v15_27').style.backgroundColor = "#45c486";
+                    valuue = parseInt(document.getElementById('coin').textContent) + 100
+                    document.getElementById('coin').innerHTML = valuue;
+                } else {
+                    document.getElementById('v15_27').style.backgroundColor = "#a40021";
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == item.br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+                        }
+                    };
+                }
+            })
+            document.querySelector('.v15_35').addEventListener('click', (e) => {
+                document.querySelector('#bu').removeAttribute("disabled");
+                var bbt = document.querySelectorAll('.cli');
+                for (var el of bbt) {
+                    el.classList.add('foo');
+                };
+                cl0 = 'cl2'
+                if (lb4.title == item.br) {
+                    document.getElementById('v15_35').style.backgroundColor = "#45c486";
+                    valuue = parseInt(document.getElementById('coin').textContent) + 100
+                    document.getElementById('coin').innerHTML = valuue;
+                } else {
+                    document.getElementById('v15_35').style.backgroundColor = "#a40021";
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == item.br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+
+                        }
+                    };
+
+                }
+            })
+
+        })
+
+
+        var l = []
+        for (let i = 0; i <= 8; i++) {
+            var item1 = vv[Math.floor(Math.random() * vv.length)];
+            if (!l.includes(item1)) {
+                l.push(item1);
+            };
+        };
+        var len = l.length;
+        console.log(l)
+
+        var le = 0
+        var t = 40
+        var o = 1
+        document.getElementById('bu').addEventListener('click', () => {
+            try {
+                document.querySelector('.bone').removeAttribute('style');
+            } catch {
+                //pass
+            };
+
+            try {
+                document.querySelector('#bu').setAttribute("disabled", true);
+            } catch {
+                //pass
+            }
+
+            bbt = document.querySelectorAll('.cli');
+            for (var el of bbt) {
+                el.classList.remove('foo');
+            };
+
+            t += 40
+            document.querySelector(".diag").style.width = t + 'px';
+            if (o < 5) {
+                o += 1
+            }
+
+           
+
+
+            document.querySelector('.v15_46').innerHTML = o + '/5'
+            le += 1;
+            if (le == 5) {
+
+                if (parseInt(valuue) >= 200) {
+                    Swal.fire("You have more than two correct questions", "  coins : " + valuue, "success")
+                        .then(
+                            function () {
+                                window.location.reload();;
+                            });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Try again ....',
+                        text: "coins : " + valuue,
+
+                    }).then(
+                        function () {
+                            window.location.reload();;
+                        });
+                }
+            }
+
+            console.log(le);
+            let indexForRemoval = 0;
+            l.splice(indexForRemoval, 1);
+
+
+
+
+
+
+
+
+
+            if (cl0 == 'cl0') {
+                document.querySelector('.v15_19').removeAttribute('style');
+            };
+            if (cl0 == 'cl1') {
+                document.querySelector('.v15_27').removeAttribute('style');
+            };
+            if (cl0 == 'cl2') {
+                document.querySelector('.v15_35').removeAttribute('style');
+            };
+
+
+
+            lb1.innerHTML = "Q.  " + l[0].q;
+            lb2.innerHTML = l[0].r[1];
+            lb2.setAttribute("title", l[0].r[1]);
+            lb3.innerHTML = l[0].r[0];
+            lb3.setAttribute("title", l[0].r[0]);
+            lb4.innerHTML = l[0].r[2];
+            lb4.setAttribute("title", l[0].r[2]);
+
+            console.log(lb2.title)
+
+
+
+            var timeleft = 10;
+            var downloadTimer = setInterval(function () {
+                if (timeleft <= 0) {
+                    clearInterval(downloadTimer);
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == l[0].br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+                            document.querySelector('#bu').removeAttribute("disabled");
+                            
+                        }
+                    };
+                }
+                document.getElementById("progressBar").value = 10 - timeleft;
+                timeleft -= 1;
+            }, 1000);
+
+            document.querySelector('.v15_19').addEventListener('click', (e) => {
+                document.querySelector('#bu').removeAttribute("disabled");
+                var bbt = document.querySelectorAll('.cli');
+                for (var el of bbt) {
+                    el.classList.add('foo');
+                };
+
+
+                if (lb2.title == l[0].br) {
+
+                    document.getElementById('v15_19').style.backgroundColor = "#45c486";
+                    valuue = parseInt(document.getElementById('coin').textContent) + 100
+                    document.getElementById('coin').innerHTML = valuue;
+
+                } else {
+                    document.getElementById('v15_19').style.backgroundColor = "#a40021";
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == l[0].br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+
+                        }
+                    };
+
+                }
+            })
+            document.querySelector('.v15_27').addEventListener('click', (e) => {
+                document.querySelector('#bu').removeAttribute("disabled");
+                var bbt = document.querySelectorAll('.cli');
+                for (var el of bbt) {
+                    el.classList.add('foo');
+                };
+
+                if (lb3.title == l[0].br) {
+
+                    document.getElementById('v15_27').style.backgroundColor = "#45c486";
+                    valuue = parseInt(document.getElementById('coin').textContent) + 100
+                    document.getElementById('coin').innerHTML = valuue;
+                } else {
+                    document.getElementById('v15_27').style.backgroundColor = "#a40021";
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == l[0].br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+
+                        }
+                    };
+
+                }
+            })
+            document.querySelector('.v15_35').addEventListener('click', (e) => {
+                document.querySelector('#bu').removeAttribute("disabled");
+                var bbt = document.querySelectorAll('.cli');
+                for (var el of bbt) {
+                    el.classList.add('foo');
+                };
+
+                if (lb4.title == l[0].br) {
+
+                    document.getElementById('v15_35').style.backgroundColor = "#45c486";
+                    valuue = parseInt(document.getElementById('coin').textContent) + 100
+                    document.getElementById('coin').innerHTML = valuue;
+                } else {
+                    document.getElementById('v15_35').style.backgroundColor = "#a40021";
+                    var x = document.getElementById("myDIV").querySelectorAll(".hh");
+                    for (var elm of x) {
+                        if (elm.title == l[0].br) {
+                            elm.parentElement.firstElementChild.style.backgroundColor = "#45c486";
+                            elm.parentElement.firstElementChild.classList.add('bone');
+
+                        }
+                    };
+
+                }
+
+            })
+
+
+        })
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
